@@ -4,7 +4,7 @@ import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:provider/provider.dart';
 
 
-void main() async {
+Future<void> main() async {
   runApp(MyApp());
 }
 

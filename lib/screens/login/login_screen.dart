@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                               onFail: (e) {
                                 scaffoldKey.currentState.showSnackBar(
                                   SnackBar(
-                                    content: Text(e),
+                                    content: Text('$e'),
                                     backgroundColor: Colors.red,
                                   )
                                 );
