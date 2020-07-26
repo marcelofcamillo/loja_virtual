@@ -1,3 +1,6 @@
+import 'package:loja_virtual/models/user.dart';
+import 'package:loja_virtual/models/user_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/helpers/validators.dart';
 
@@ -64,8 +67,12 @@ class LoginScreen extends StatelessWidget {
                   child: RaisedButton(
                     onPressed: () {
                       if(formKey.currentState.validate()) {
-                        print(emailController.text);
-                        print(passController.text);
+                        context.read<UserManager>().signIn(
+                          User(
+                            email: emailController.text,
+                            password: passController.text
+                          )
+                        );
                       }
                     },
                     color: Theme.of(context).primaryColor,
