@@ -43,13 +43,27 @@ class CartTile extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.w300)
                         )
                       ),
-                      Text(
-                        'R\$ ${cartProduct.unitPrice.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
-                        )
+                      Consumer<CartProduct>(
+                        builder: (_, cartProduct, __) {
+                          if(cartProduct.hasStock) {
+                            return Text(
+                              'R\$ ${cartProduct.unitPrice.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold
+                              )
+                            );
+                          } else {
+                            return Text(
+                              'Sem estoque disponível!',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12
+                              )
+                            );
+                          }
+                        }
                       )
                     ]
                   )
@@ -58,23 +72,23 @@ class CartTile extends StatelessWidget {
               Consumer<CartProduct>(
                 builder: (_, cartProduct, __) {
                   return Column(
-                      children: <Widget>[
-                        CustomIconButton(
-                          iconData: Icons.add,
-                          color: Theme.of(context).primaryColor,
-                          onTap: cartProduct.increment
-                        ),
-                        Text(
-                          '${cartProduct.quantity}',
-                          style: const TextStyle(fontSize: 20)
-                        ),
-                        CustomIconButton(
-                          iconData: Icons.remove,
-                          color: cartProduct.quantity > 1 ?
-                          Theme.of(context).primaryColor : Colors.red,
-                          onTap: cartProduct.decrement
-                        )
-                      ]
+                    children: <Widget>[
+                      CustomIconButton(
+                        iconData: Icons.add,
+                        color: Theme.of(context).primaryColor,
+                        onTap: cartProduct.increment
+                      ),
+                      Text(
+                        '${cartProduct.quantity}',
+                        style: const TextStyle(fontSize: 20)
+                      ),
+                      CustomIconButton(
+                        iconData: Icons.remove,
+                        color: cartProduct.quantity > 1 ?
+                        Theme.of(context).primaryColor : Colors.red,
+                        onTap: cartProduct.decrement
+                      )
+                    ]
                   );
                 }
               )
