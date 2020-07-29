@@ -11,7 +11,7 @@ class Product extends ChangeNotifier{
     description = document['description'] as String;
     images = List<String>.from(document.data['images'] as List<dynamic>);
     sizes = (document.data['sizes'] as List<dynamic> ?? []).map(
-            (s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+      (s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
   }
 
   String id;
