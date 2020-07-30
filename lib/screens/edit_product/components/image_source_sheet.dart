@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class ImageSourceSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if(!Platform.isAndroid) {
+    if(Platform.isAndroid) {
       return BottomSheet(
         onClosing: () {},
         builder: (_) => Column(

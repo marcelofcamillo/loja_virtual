@@ -51,7 +51,7 @@ class ImagesForm extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                     iconSize: 100,
                     onPressed: () {
-                      if(!Platform.isAndroid) {
+                      if(Platform.isAndroid) {
                         showModalBottomSheet(
                           context: context,
                           builder: (_) => ImageSourceSheet()
