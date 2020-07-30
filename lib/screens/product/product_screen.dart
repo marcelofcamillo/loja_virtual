@@ -55,7 +55,7 @@ class ProductScreen extends StatelessWidget {
                 dotSpacing: 15,
                 dotBgColor: Colors.transparent,
                 dotColor: primaryColor,
-                autoplay: true,
+                autoplay: false,
                 //animationDuration: const Duration(seconds: 1)
               )
             ),
