@@ -62,21 +62,21 @@ class MyApp extends StatelessWidget {
           switch(settings.name) {
             case '/login':
               return MaterialPageRoute(
-                  builder: (_) => LoginScreen()
+                builder: (_) => LoginScreen()
               );
             case '/signup':
               return MaterialPageRoute(
-                  builder: (_) => SignUpScreen()
+                builder: (_) => SignUpScreen()
               );
             case '/product':
               return MaterialPageRoute(
-                  builder: (_) => ProductScreen(
-                    settings.arguments as Product
-                  )
+                builder: (_) => ProductScreen(
+                  settings.arguments as Product
+                )
               );
             case '/cart':
               return MaterialPageRoute(
-                  builder: (_) => CartScreen()
+                builder: (_) => CartScreen()
               );
             case '/base':
             default:
@@ -84,8 +84,8 @@ class MyApp extends StatelessWidget {
                 builder: (_) => BaseScreen()
               );
           }
-        },
-      ),
+        }
+      )
     );
   }
 }

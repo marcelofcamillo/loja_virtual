@@ -40,7 +40,7 @@ class BaseScreen extends StatelessWidget {
                   Scaffold(
                     drawer: CustomDrawer(),
                     appBar: AppBar(
-                        title: const Text('Pedidos')
+                      title: const Text('Pedidos')
                     )
                   )
                 ]
