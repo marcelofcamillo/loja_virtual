@@ -21,7 +21,23 @@ class ProductScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(product.name),
-          centerTitle: true
+          centerTitle: true,
+          actions: <Widget>[
+            Consumer<UserManager>(
+              builder: (_, userManager, __) {
+                if(userManager.adminEnabled) {
+                  return IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed('/edit_product');
+                    }
+                  );
+                } else {
+                  return Container();
+                }
+              }
+            )
+          ]
         ),
         backgroundColor: Colors.white,
         body: ListView(
