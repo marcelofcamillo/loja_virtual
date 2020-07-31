@@ -82,7 +82,7 @@ class ProductScreen extends StatelessWidget {
                     )
                   ),
                   Text(
-                    'R\$ 19.99',
+                    'R\$ ${product.basePrice.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -110,8 +110,8 @@ class ProductScreen extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500
-                      ),
-                    ),
+                      )
+                    )
                   ),
                   Wrap(
                     spacing: 8,
@@ -125,23 +125,23 @@ class ProductScreen extends StatelessWidget {
                     Consumer2<UserManager, Product>(
                       builder: (_, userManager, product, __) {
                         return SizedBox(
-                            height: 44,
-                            child: RaisedButton(
-                                onPressed: product.selectedSize != null ? () {
-                                  if(userManager.isLoggedIn) {
-                                    context.read<CartManager>().addToCart(product);
-                                    Navigator.of(context).pushNamed('/cart');
-                                  } else {
-                                    Navigator.of(context).pushNamed('/login');
-                                  }
-                                } : null,
-                                color: primaryColor,
-                                textColor: Colors.white,
-                                child: Text(
-                                    userManager.isLoggedIn ? 'Adicionar ao carrinho' : 'Entre para comprar',
-                                    style: const TextStyle(fontSize: 18)
-                                )
+                          height: 44,
+                          child: RaisedButton(
+                            onPressed: product.selectedSize != null ? () {
+                              if(userManager.isLoggedIn) {
+                                context.read<CartManager>().addToCart(product);
+                                Navigator.of(context).pushNamed('/cart');
+                              } else {
+                                Navigator.of(context).pushNamed('/login');
+                              }
+                            } : null,
+                            color: primaryColor,
+                            textColor: Colors.white,
+                            child: Text(
+                              userManager.isLoggedIn ? 'Adicionar ao carrinho' : 'Entre para comprar',
+                              style: const TextStyle(fontSize: 18)
                             )
+                          )
                         );
                       }
                     )
