@@ -5,9 +5,12 @@ import 'components/images_form.dart';
 import 'components/sizes_form.dart';
 
 class EditProductScreen extends StatelessWidget {
-  EditProductScreen(this.product);
+  EditProductScreen(Product p) :
+        editing = p != null,
+        product = p != null ? p.clone() : Product();
 
   final Product product;
+  final bool editing;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -17,7 +20,7 @@ class EditProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar anúncio'),
+        title: Text(editing ? 'Editar anúncio' : 'Criar anúncio'),
         centerTitle: true
       ),
       backgroundColor: Colors.white,
@@ -97,15 +100,23 @@ class EditProductScreen extends StatelessWidget {
                     }
                   ),
                   SizesForm(product),
-                  RaisedButton(
-                    onPressed: () {
-                      if(formKey.currentState.validate()) {
-                        print('válido');
-                      } else {
-                        print('inválido');
-                      }
-                    },
-                    child: const Text('Salvar')
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 44,
+                    child: RaisedButton(
+                      onPressed: () {
+                        if(formKey.currentState.validate()) {
+                          print('válido');
+                        }
+                      },
+                      textColor: Colors.white,
+                      color: primaryColor,
+                      disabledColor: primaryColor.withAlpha(100),
+                      child: const Text(
+                        'Salvar',
+                        style: TextStyle(fontSize: 18)
+                      )
+                    )
                   )
                 ]
               )

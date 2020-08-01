@@ -14,7 +14,7 @@ class SizesForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<List<ItemSize>>(
-      initialValue: List.from(product.sizes),
+      initialValue: product.sizes,
       validator: (sizes) {
         if(sizes.isEmpty) {
           return 'Insira um tamanho.';
@@ -77,7 +77,7 @@ class SizesForm extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   state.errorText,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                     fontSize: 12
                   )
