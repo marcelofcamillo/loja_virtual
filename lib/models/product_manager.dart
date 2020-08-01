@@ -22,14 +22,14 @@ class ProductManager extends ChangeNotifier {
 
   List<Product> get filteredProducts {
     final List<Product> filteredProducts = [];
-    
+
     if(search.isEmpty) {
       filteredProducts.addAll(allProducts);
     } else {
       filteredProducts.addAll(
-        allProducts.where(
-          (p) => p.name.toLowerCase().contains(search.toLowerCase())
-        )
+          allProducts.where(
+            (p) => p.name.toLowerCase().contains(search.toLowerCase())
+          )
       );
     }
 
@@ -50,5 +50,11 @@ class ProductManager extends ChangeNotifier {
     } catch(e) {
       return null;
     }
+  }
+
+  void update(Product product) {
+    allProducts.removeWhere((p) => p.id == product.id);
+    allProducts.add(product);
+    notifyListeners();
   }
 }

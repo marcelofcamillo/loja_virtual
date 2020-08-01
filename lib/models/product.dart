@@ -19,7 +19,7 @@ class Product extends ChangeNotifier{
     description = document['description'] as String;
     images = List<String>.from(document.data['images'] as List<dynamic>);
     sizes = (document.data['sizes'] as List<dynamic> ?? []).map(
-      (s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+            (s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
   }
 
   final Firestore firestore = Firestore.instance;
@@ -35,6 +35,13 @@ class Product extends ChangeNotifier{
   List<ItemSize> sizes;
 
   List<dynamic> newImages;
+
+  bool _loading = false;
+  bool get loading => _loading;
+  set loading(bool value) {
+    _loading = value;
+    notifyListeners();
+  }
 
   ItemSize _selectedSize;
   ItemSize get selectedSize => _selectedSize;
@@ -83,6 +90,8 @@ class Product extends ChangeNotifier{
   }
 
   Future<void> save() async {
+    loading = true;
+
     final Map<String, dynamic> data = {
       'name': name,
       'description': description,
@@ -123,6 +132,9 @@ class Product extends ChangeNotifier{
     }
 
     await firestoreRef.updateData({'images': updateImages});
+
+    images = updateImages;
+    loading = false;
   }
 
   Product clone() {
