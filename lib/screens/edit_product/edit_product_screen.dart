@@ -20,7 +20,7 @@ class EditProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(editing ? 'Editar anúncio' : 'Criar anúncio'),
+        title: Text(editing ? 'Editar produto' : 'Criar produto'),
         centerTitle: true
       ),
       backgroundColor: Colors.white,
@@ -51,7 +51,8 @@ class EditProductScreen extends StatelessWidget {
                       } else {
                         return null;
                       }
-                    }
+                    },
+                    onSaved: (name) => product.name = name
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -97,7 +98,8 @@ class EditProductScreen extends StatelessWidget {
                       } else {
                         return null;
                       }
-                    }
+                    },
+                    onSaved: (desc) => product.description = desc
                   ),
                   SizesForm(product),
                   const SizedBox(height: 20),
@@ -106,6 +108,9 @@ class EditProductScreen extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {
                         if(formKey.currentState.validate()) {
+                          formKey.currentState.save();
+
+                          print(product);
                           print('válido');
                         }
                       },

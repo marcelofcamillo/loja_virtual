@@ -5,7 +5,6 @@ import 'package:loja_virtual/models/product.dart';
 
 import 'edit_item_size.dart';
 
-
 class SizesForm extends StatelessWidget {
   const SizesForm(this.product);
 
