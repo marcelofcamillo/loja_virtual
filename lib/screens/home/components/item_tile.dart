@@ -65,7 +65,7 @@ class ItemTile extends StatelessWidget {
 
                     Navigator.of(context).pop();
                   },
-                  child: Text(product != null ? 'Desvincular' : 'Vincular'),
+                  child: Text(product != null ? 'Desvincular' : 'Vincular')
                 )
               ]
             );
