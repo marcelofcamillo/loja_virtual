@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/section.dart';
 
 class HomeManager extends ChangeNotifier {
@@ -8,6 +9,8 @@ class HomeManager extends ChangeNotifier {
   }
 
   List<Section> sections = [];
+
+  bool editing = false;
 
   final Firestore firestore = Firestore.instance;
 
@@ -21,5 +24,20 @@ class HomeManager extends ChangeNotifier {
 
       notifyListeners();
     });
+  }
+
+  void enterEditing() {
+    editing = true;
+    notifyListeners();
+  }
+
+  void saveEditing() {
+    editing = false;
+    notifyListeners();
+  }
+
+  void discardEditing() {
+    editing = false;
+    notifyListeners();
   }
 }
