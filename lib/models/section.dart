@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:loja_virtual/models/section_item.dart';
 
-class Section {
-  Section({this.name, this.type, this.items}) {
+class Section extends ChangeNotifier {
+  Section({this.name, this.type, this.items}){
     items = items ?? [];
   }
 
-  Section.fromDocument(DocumentSnapshot document) {
+  Section.fromDocument(DocumentSnapshot document){
     name = document.data['name'] as String;
     type = document.data['type'] as String;
     items = (document.data['items'] as List).map(
@@ -17,11 +18,16 @@ class Section {
   String type;
   List<SectionItem> items;
 
-  Section clone() {
+  void addItem(SectionItem item){
+    items.add(item);
+    notifyListeners();
+  }
+
+  Section clone(){
     return Section(
       name: name,
       type: type,
-      items: items.map((e) => e.clone()).toList()
+      items: items.map((e) => e.clone()).toList(),
     );
   }
 

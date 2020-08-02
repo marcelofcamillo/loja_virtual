@@ -5,24 +5,22 @@ import 'package:loja_virtual/models/section.dart';
 import 'package:provider/provider.dart';
 
 class SectionHeader extends StatelessWidget {
-  const SectionHeader(this.section);
-
-  final Section section;
 
   @override
   Widget build(BuildContext context) {
     final homeManager = context.watch<HomeManager>();
+    final section = context.watch<Section>();
 
-    if(homeManager.editing) {
+    if(homeManager.editing){
       return Row(
         children: <Widget>[
           Expanded(
             child: TextFormField(
               initialValue: section.name,
               decoration: const InputDecoration(
-                hintText: 'Título',
-                isDense: true,
-                border: InputBorder.none
+                  hintText: 'Título',
+                  isDense: true,
+                  border: InputBorder.none
               ),
               style: TextStyle(
                 color: Colors.white,
@@ -35,7 +33,7 @@ class SectionHeader extends StatelessWidget {
           CustomIconButton(
             iconData: Icons.remove,
             color: Colors.white,
-            onTap: () {
+            onTap: (){
               homeManager.removeSection(section);
             }
           )
@@ -49,7 +47,7 @@ class SectionHeader extends StatelessWidget {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w800,
-            fontSize: 18
+            fontSize: 18,
           )
         )
       );
