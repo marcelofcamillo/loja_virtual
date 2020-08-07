@@ -15,7 +15,6 @@ class CartScreen extends StatelessWidget {
       ),
       body: Consumer<CartManager>(
         builder: (_, cartManager, __) {
-          print(cartManager.isCartValid);
           return ListView(
             children: <Widget>[
               Column(
