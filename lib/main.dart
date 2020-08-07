@@ -20,8 +20,6 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   runApp(MyApp());
-
-  CepAbertoService().getAddressFromCep('13.087-000').then((address) => print(address));
 }
 
 class MyApp extends StatelessWidget {
