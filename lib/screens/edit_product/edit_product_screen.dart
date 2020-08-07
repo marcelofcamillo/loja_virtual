@@ -126,7 +126,7 @@ class EditProductScreen extends StatelessWidget {
                               textColor: Colors.white,
                               color: primaryColor,
                               disabledColor: primaryColor.withAlpha(100),
-                              child: product.loading ? CircularProgressIndicator(
+                              child: product.loading ? const CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation(Colors.white)
                               ) : const Text(
                                 'Salvar',

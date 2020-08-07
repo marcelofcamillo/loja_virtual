@@ -9,8 +9,8 @@ class Address {
   String zipcode;
   String city;
   String state;
-  String latitude;
-  String longitude;
+  double latitude;
+  double longitude;
 
 
 }
