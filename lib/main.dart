@@ -14,11 +14,14 @@ import 'package:loja_virtual/screens/login/login_screen.dart';
 import 'package:loja_virtual/screens/product/product_screen.dart';
 import 'package:loja_virtual/screens/select_product/select_product_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
+import 'package:loja_virtual/services/cepaberto_service.dart';
 import 'package:provider/provider.dart';
 
 
 Future<void> main() async {
   runApp(MyApp());
+
+  CepAbertoService().getAddressFromCep('13087000');
 }
 
 class MyApp extends StatelessWidget {
