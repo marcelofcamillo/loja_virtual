@@ -13,6 +13,8 @@ class PriceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartManager = context.watch<CartManager>();
     final productsPrice = cartManager.productsPrice;
+    final deliveryPrice = cartManager.deliveryPrice;
+    final totalPrice = cartManager.totalPrice;
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -37,8 +39,19 @@ class PriceCard extends StatelessWidget {
                 Text('R\$ ${productsPrice.toStringAsFixed(2)}')
               ],
             ),
-            const Divider(),
             const SizedBox(height: 12),
+            if(deliveryPrice != null)
+              ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    const Text('Entrega'),
+                    Text('R\$ ${deliveryPrice.toStringAsFixed(2)}')
+                  ],
+                ),
+                const Divider(),
+              ],
+            const SizedBox(height: 1),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -47,7 +60,7 @@ class PriceCard extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.w500)
                 ),
                 Text(
-                  'R\$ ${productsPrice.toStringAsFixed(2)}',
+                  'R\$ ${totalPrice.toStringAsFixed(2)}',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16
@@ -55,7 +68,7 @@ class PriceCard extends StatelessWidget {
                 )
               ]
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(height: 8),
             RaisedButton(
               color: Theme.of(context).primaryColor,
               disabledColor: Theme.of(context).primaryColor.withAlpha(100),

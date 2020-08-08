@@ -12,9 +12,11 @@ class AddressInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    final cartManager = context.watch<CartManager>();
+
     String emptyValidator(String text) => text.isEmpty ? 'Campo obrigatório' : null;
 
-    if(address.zipcode != null) {
+    if(address.zipcode != null && cartManager.deliveryPrice == null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -137,6 +139,13 @@ class AddressInputField extends StatelessWidget {
             child: const Text('Calcular frete')
           )
         ]
+      );
+    } else if(address.zipcode != null) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: Text(
+          '${address.street}, ${address.number} \n${address.district} \n${address.city} - ${address.state}'
+        )
       );
     } else {
       return Container();
